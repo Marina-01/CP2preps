@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercise 1</title>
+	<style type="text/css"></style>
+	<script type="text/javascript">
+		function validateName() {
+			var name = document.getElementById("name").value;
+			var ck_password =  /^[A-Z][a-z]*/;
+			if(!ck_password.test(name))
+            {
+
+                window.alert("Please enter your name again!");
+
+            }
+			
+		}
+		function validateSur() {
+			var sur = document.getElementById("sur").value;
+			var ck_password =  /^[A-Z][a-z]*/;
+			if(!ck_password.test(sur))
+            {
+
+                window.alert("Please enter your surname again!");
+
+            }
+
+
+		}
+		function Pass() {
+			var get_pass = document.getElementById("pass").value;
+			if (get_pass = '') {
+				get_pass.style.backgroundColor = "red";
+			}
+			else {
+				get_pass.style.backgroundColor = "white";
+			}
+		}
+		function confirmPass() {
+			var get_pass = document.getElementById("pass");
+			var get_pass2 = document.getElementById("pass2");
+			if (get_pass.value == get_pass2.value) {
+				get_pass2.style.backgroundColor = "white";
+			}
+			else {
+				get_pass2.style.backgroundColor = "red";
+			}
+		}
+
+		function validateEmail() {
+			var get_email = document.getElementById("email");
+			var format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			var get_name = document.getElementById("name").value;
+			var get_sur = document.getElementById("sur").value;
+			if (email.value.match(format)) {
+				email.style.backgroundColor = "white";
+				window.alert(get_name + " " + get_sur);
+			}//end if
+			else {
+				email.style.backgroundColor = "red";
+			}
+		}//end validateEmail
+	</script>
+</head>
+<body>
+
+<h2>JavaScript Can Validate Input</h2>
+<form name="form">
+		<label for="fname">First name:</label>
+		<input type="text" name="fname" id="name" required oninput="validateName()">
+		<br><br>
+		<label for="lname">Last name:</label>
+		<input type="text" name="lname" id="sur" required oninput="validateSur()">
+		<br><br>
+		<label for="pass">Enter your password: </label>
+		<input type="password" name="pass" id="pass" required oninput="Pass()">
+		<br><br>
+		<label for="pass2">Confirm your password: </label>
+		<input type="password" name="pass2" id="pass2" required oninput="confirmPass()">
+		<br><br>
+		<label for="email"> Enter your email: </label>
+		<input type="email" name="email" id="email" required oninput="validateEmail()"> 
+		<br><br>
+		<button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		
+#timer {
+	width: 150px;
+	font-size: 50px;
+	text-align: center;
+	color: red;
+	margin: 0 0 0 0;
+}
+#box {
+	width: 500px;
+	height: 400px;
+	border: 2px red solid;
+	margin-top: 20px;
+}
+#ball {
+	width: 20px;
+	height: 20px;
+	background-color: blue;
+	border-radius: 50%;
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+
+	</style>
+	<script type="text/javascript">
+		
+var timerHandle = null;
+var time = 0;
+var timerRunning = false;
+
+function timerStart() {
+	if (!timerRunning) {
+		timerHandle = window.setInterval(increaseTime, 1000);
+		timerRunning = true;
+	}
+}
+
+function timerStop() {
+	if (timerRunning) {
+		window.clearInterval(timerHandle);
+		timerRunning = false;
+	}
+}
+
+function timerReset() {
+	time = 0;
+	printTime();
+}
+
+function increaseTime() {
+	time = time + 1;
+	printTime();
+}
+
+function printTime() {
+	document.getElementById("timer").innerHTML = time;
+}
+
+	</script>
+</head>
+<body>
+<p id="timer">0</p>
+<button onclick="timerStart()">Start</button>
+<button onclick="timerStop()">Stop</button>
+<button onclick="timerReset()">Reset</button>
+</body>
+</html>

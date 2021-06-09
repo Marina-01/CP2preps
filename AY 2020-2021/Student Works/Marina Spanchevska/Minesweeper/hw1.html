@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mines</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+	<link rel="stylesheet" href="mine.css">
+	<script src="minefield.js"></script>
+    <script>
+
+        var minefield = null;
+        function level() {
+            var level = document.getElementById("select_level");
+            if (level.value == 5) {
+                minefield = new Minefield(5, 5, 5);print();
+                newGame(5, 5, 5);
+                document.getElementById("box").style.height="250px";
+                document.getElementById("box").style.width="250px";
+            }
+            else if (level.value == 9) {
+                minefield = new Minefield(9, 9, 9);print();
+                newGame(9, 9, 9);
+                document.getElementById("box").style.height="450px";
+                document.getElementById("box").style.width="450px";
+            }
+            else {
+                minefield = new Minefield(12, 12, 12);print();
+                newGame(12, 12, 12);
+                document.getElementById("box").style.height="600px";
+                document.getElementById("box").style.width="600px";
+            }
+        }
+        function newGame(x, y, b) {
+            var div = document.getElementById("box");
+            div.innerHTML = "";
+            minefield = new Minefield(x, y, b);
+            button(x, y);
+            helper();
+            print();
+        }
+
+        function check() {
+            var x = document.getElementById("x").value;
+            var y = document.getElementById("y").value;
+            window.alert(minefield.symbol(x, y));
+        }
+        function hit() {
+            var x = document.getElementById("x").value;
+            var y = document.getElementById("y").value;
+            minefield.unveil(x, y);
+            print();
+        }
+        function print() {
+            var level = document.getElementById("select_level");
+            if (level.value == 5) {
+                var remaining = minefield.veiled + minefield.explosions - 5;
+            document.getElementById("output").innerHTML = minefield.toString() + "\n" + remaining + "/" +minefield.explosions;
+            }
+            else if (level.value == 9) {
+                var remaining = minefield.veiled + minefield.explosions - 9;
+            document.getElementById("output").innerHTML = minefield.toString() + "\n" + remaining + "/" +minefield.explosions;
+            }
+            else {
+                var remaining = minefield.veiled + minefield.explosions - 12;
+            document.getElementById("output").innerHTML = minefield.toString() + "\n" + remaining + "/" +minefield.explosions;
+            }
+            
+        }
+
+        var butons;
+        function button(x, y) {
+            var div = document.getElementById("box");
+            butons = new Array(x);
+            for (var i = 0; i < x; i++) {
+                butons[i] = new Array(y);
+                for (var j = 0; j < y; j++) {
+                    butons[i][j] = document.createElement("BUTTON");
+                    butons[i][j].innerText = ".";
+                    butons[i][j].style.color = "darkgray";
+                    butons[i][j].setAttribute("id", "buttons1");
+                    div.appendChild(butons[i][j]);
+                    butons[i][j].setAttribute("onclick", "action(" + (j.toString()) + ", " + (i.toString()) + ")");
+                }
+            }
+        }
+        function helper() {
+            var restart = document.getElementById("restart");
+            var box2 = document.getElementById("box");
+            var end = document.getElementById("end");
+                end.style.visibility = "hidden";
+                box2.setAttribute("class", "box");
+            
+        }
+
+        function action(x, y) {
+        	var level = document.getElementById("select_level");
+            if (level.value == 5) {
+                minefield.unveil(x, y);
+                print();
+                var con = minefield.toString();
+                if (butons[0][0].id === "buttons1") {
+                    var buttons = 5;   
+                }
+                    for (var i = 0, l = 0; i < buttons; i++, l++) {
+                        for (var j = 0; j < buttons; j++, l++) {
+                            butons[i][j].innerText = con.charAt(l);
+                            if (butons[i][j].innerText !== '.') {
+                                butons[i][j].style.color = "white";
+                            }
+
+                                if (con.charAt(l) === 'x') {
+                                    butons[i][j].style.backgroundColor = "black";
+                                    butons[i][j].style.color = "black";
+                                    var end = document.getElementById("end");
+                                    end.style.visibility = "visible";
+                                    for (var i = 0; i < buttons; i++) {
+                                        for (var j = 0; j < buttons; j++) {
+                                            butons[i][j].setAttribute("onclick", "null");
+                                        }
+                                    }
+                                window.alert("You Have Lost. Do you want to try again?");
+                                window.location.reload(); 
+                                }
+                                if (con.charAt(l) === '0') {
+                                    butons[i][j].style.backgroundColor = "orange";
+                                    butons[i][j].style.color = "orange";
+                                }
+                                if (con.charAt(l) === '1') {
+                                    butons[i][j].style.color = "darkgreen";
+                                }
+                                if (con.charAt(l) === '2') {
+                                    butons[i][j].style.color = "blue";
+                                }
+                                if (con.charAt(l) === '3') {
+                                    butons[i][j].style.color = "darkblue";
+                                }
+                          
+                        }
+                    }
+                    }
+            else if (level.value == 9) {
+               minefield.unveil(x, y);
+            print();
+            var con = minefield.toString();
+            if (butons[0][0].id === "buttons1") {
+            var buttons = 9;   
+            }
+            for (var i = 0, l = 0; i < buttons; i++, l++) {
+                for (var j = 0; j < buttons; j++, l++) {
+                    butons[i][j].innerText = con.charAt(l);
+                    if (butons[i][j].innerText !== '.') {
+                        butons[i][j].style.color = "white";
+                    }
+
+                        if (con.charAt(l) === 'x') {
+                            butons[i][j].style.backgroundColor = "black";
+                            butons[i][j].style.color = "black";
+                            var end = document.getElementById("end");
+                            end.style.visibility = "visible";
+                            for (var i = 0; i < buttons; i++) {
+                                for (var j = 0; j < buttons; j++) {
+                                    butons[i][j].setAttribute("onclick", "null");
+                                }
+                            }
+	                        window.alert("You Have Lost. Do you want to try again?");
+	                        window.location.reload();  
+                        }
+                        if (con.charAt(l) === '0') {
+                            butons[i][j].style.backgroundColor = "orange";
+                            butons[i][j].style.color = "orange";
+                        }
+                        if (con.charAt(l) === '1') {
+                                    butons[i][j].style.color = "darkgreen";
+                        }
+                        if (con.charAt(l) === '2') {
+                            butons[i][j].style.color = "blue";
+                        }
+                        if (con.charAt(l) === '3') {
+                            butons[i][j].style.color = "darkblue";
+                            }
+                
+                }
+            }
+
+            }
+            else {
+                minefield.unveil(x, y);
+            print();
+            var con = minefield.toString();
+            if (butons[0][0].id === "buttons1") {
+            var buttons = 12;   
+            }
+            for (var i = 0, l = 0; i < buttons; i++, l++) {
+                for (var j = 0; j < buttons; j++, l++) {
+                    butons[i][j].innerText = con.charAt(l);
+                    if (butons[i][j].innerText !== '.') {
+                        butons[i][j].style.color = "white";
+                    }
+
+                        if (con.charAt(l) === 'x') {
+                            butons[i][j].style.backgroundColor = "black";
+                            butons[i][j].style.color = "black";
+                            var end = document.getElementById("end");
+                            end.style.visibility = "visible";
+                            for (var i = 0; i < buttons; i++) {
+                                for (var j = 0; j < buttons; j++) {
+                                    butons[i][j].setAttribute("onclick", "null");
+                                }
+                            }
+                        	window.alert("You Have Lost. Do you want to try again?");
+                            window.location.reload(); 
+                        }
+                        if (con.charAt(l) === '0') {
+                            butons[i][j].style.backgroundColor = "orange";
+                            butons[i][j].style.color = "orange";
+                        }
+						if (con.charAt(l) === '1') {
+                                    butons[i][j].style.color = "darkgreen";
+                        }
+                        if (con.charAt(l) === '2') {
+                            butons[i][j].style.color = "blue";
+                        }
+                        if (con.charAt(l) === '3') {
+                            butons[i][j].style.color = "darkblue";
+                        }
+                
+                }
+            }
+
+            }
+            
+        }
+
+    </script>
+</head>
+<body>
+	<table id="left">
+		<tbody id="left">
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			</tr>
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+		    </tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			</tr>	
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		  	<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			</tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>	
+		    <tr>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			</tr>
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+		</tbody>
+	</table>
+	<div id="header"><h1 class="glow">MINESWEEPER</h1></div>
+	<table id="right">
+		<tbody id="right">
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		  	<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			</tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>	
+		    <tr>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			</tr>
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+
+		    <tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			</tr>
+			<tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+		    </tr>	
+			<tr>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+		    </tr>
+		    <tr>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rfour" src="bomb.png"></th>
+			    <th><img class="bg rtwo" src="bomb.png"></th>
+			    <th><img class="bg rthree" src="bomb.png"></th>
+			    <th><img class="bg rone" src="bomb.png"></th>
+			</tr>	
+		</tbody>
+	</table>
+
+	<div id="space"></div>
+	<div id="new">
+		<label for="select">SELECT DIFFICULTY</label>
+		<select name="select" id="select_level">
+			<option value="5">Beginner</option>
+			<option value="9">Intermediate</option>
+			<option value="12">Expert</option>
+		</select>
+		<input type="button" class="newgame" value="NEW GAME" id="restart" onclick="level()">
+	</div>
+	<div id="space"></div>
+	<div id="space"></div>
+
+	<div id="end"></div>
+    <div id="box"></div>
+	<pre id="output"></pre>
+	
+    <script>
+        newGame(5, 5, 5);
+    </script>
+</body>
+</html>

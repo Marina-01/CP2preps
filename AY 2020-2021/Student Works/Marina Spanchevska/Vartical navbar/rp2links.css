@@ -1,0 +1,22 @@
+body {
+    font-family: 'Acme';font-size: 22px;
+}
+ul  {
+	list-style-type: none;
+	width: 200px;
+}
+li a {
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	background-color: orange;
+	width: 200px;
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 3px;
+}
+li a:hover {
+	background-color: black;
+	color: white; 
+}

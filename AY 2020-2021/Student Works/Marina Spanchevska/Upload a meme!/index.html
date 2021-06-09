@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Home page</title>
+<style>
+body {
+	background-color: #F0FECF;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1D1D1F;
+}
+li {
+    display: inline;
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+}
+li a:hover {
+	background-color: #4F5459;
+}
+#active {
+	background-color: #508A3A;
+}
+button {
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#mybtn {
+	background-color: #1D1D1F;
+	color: white;
+	padding: 15px 15px;
+}
+</style>
+</head>
+<body>
+<nav>
+<ul>
+  <li><a href="index.html" id="active" target="_blank">Home</a></li>
+  <li><a href="page2.html" target="_blank">Register Account</a></li>
+  <li><a href="page4.html" target="_blank">Upload Meme</a></li>
+</ul> 
+</nav>
+<br>
+<div>
+	<button type="button" onclick="location.href='page2.html'" id="mybtn">REGISTER TO JOIN!</button>
+</div>
+<br>
+<div>
+	<button type="button" onclick="location.href='page4.html'" id="mybtn">UPLOAD A MEME!</button>
+</div>
+</body>
+</html>

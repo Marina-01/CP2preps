@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+function base(lines) {
+	document.write('<table border=0" cellspacing="0" style="width:50%;">');
+	for(var i = 1; i < lines; i++) {
+		document.write('<tr>');
+			document.write('<td style="background-color:rgb('+i+',10,90);" onclick="find('+i+',10,90)"></td>');
+		document.write('</tr>');
+}
+	document.write('</table>');
+}
+function find(r,g,b) {
+	window.alert("Red:"+r+" Green:10 Blue:90");
+}
+base(256);
+
+</script>
+</head>
+<body>
+</body>
+</html>

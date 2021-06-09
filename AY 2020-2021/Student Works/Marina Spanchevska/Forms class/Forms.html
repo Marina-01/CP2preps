@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forms</title>
+</head>
+<body>
+<h2>Personal Data Form</h2>
+<form action="OtherPage.html" method="post">
+<!-- method="get" -->
+	<fieldset>
+		<legend><h3>Personal Information</h3></legend>
+		<label for="fname">First name:</label>
+		<input type="text" name="fname" id="fname">
+		<label for="lname">Last name:</label>
+		<input type="text" name="lname" id="lname">
+		<br><br>
+		<label for="gender">Gender:</label>
+		<input type="radio" name="gender" id="male">
+		<label for="male">Male</label>
+		<input type="radio" name="gender" id="female">
+		<label for="female">Female</label>
+		<br><br>
+
+		<label for="bday">Select your birthday</label>
+		<input type="date" min="1990-01-01" max="2025-01-01" name="bday" id="bday">
+	</fieldset>
+	<br>
+	<fieldset>
+		<legend><h3>Contact Information</h3></legend>
+		<label for="myemail">Enter e-mail: </label>
+		<input type="email" name="myemail" id="myemail">
+		<br><br>
+		<label for="telenum">Enter your phone number: </label>
+		<input type="tel" name="telenum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" id="telenum">
+	</fieldset>
+	<br><br>
+
+	<label>Your favorite language</label>
+	<br>
+	<input type="checkbox" name="favpl" id="favpl1">
+	<label for="favpl1">C++</label>
+	<input type="checkbox" name="favpl" id="favpl2">
+	<label for="favpl2">Java</label>
+	<input type="checkbox" name="favpl" id="favpl3">
+	<label for="favpl3">Ruby</label>
+	<br><br>
+
+	<label for="myfile">Upload your resume: </label>
+	<input type="file" name="myfile" id="myfile">
+	<br><br>
+
+	<label for="myurl">Enter your personal website: </label>
+	<input type="url" name="myurl" id="myurl">
+	<br><br>
+
+	<label for="username">Enter your username: </label>
+	<input type="text" name="username" id="username">
+	<br>
+	<label for="pass">Enter your password: </label>
+	<input type="password" name="pass" id="pass">
+	<br><br>
+
+	<label for="researcharea">What is your research field</label><br>
+	<select name="researcharea" id="researcharea" size="1">
+		<option value="HCI">HCI</option>
+		<option value="ML" selected>ML</option>
+		<option value="SE">SE</option>
+	</select>
+	<br><br>
+
+	<label for="comments">Comments: </label><br>
+	<textarea name="comments" id="comments" rows="10" cols="40">Please enter your comments here.</textarea>
+	<br><br>
+
+	<input type="submit" name="submitbtn" value="Submit" id="submitbtn">
+	<input type="reset" name="resetbtn" id="resetbtn">
+	<br><br>
+
+</form>
+</body>
+</html>

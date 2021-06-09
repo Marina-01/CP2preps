@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function mulFunc(rows,cols){
+			document.write('<table border="1" cellspacing="0" id="multable" style="width:50%;">');
+
+			for (var i = 1; i < rows; i++) {
+				document.write('<tr>');
+				for (var j = 1; j < cols; j++) {
+					document.write("<td onclick='answer("+i+","+j+")'>"+i+"x"+j+"</td>");
+				}
+				document.write('</tr>');
+			}
+			document.write('</table>');
+
+		}
+
+		mulFunc(256,2);
+
+		function answer(i,j){
+			window.alert("Red:"+i+" Green:"+j+" Blue: 90");
+		}
+
+	</script>
+</head>
+<body>
+	<!-- <table border="1" cellspacing="0" id="multable" style="width:50%;">
+		<tr>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+		</tr>
+		<tr>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+		</tr>
+	</table> -->
+</body>
+</html>

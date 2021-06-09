@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Collect</title>
+    <style>
+    button {
+      width: 50px;
+      margin: 5px;
+      font-size: 30px;
+      padding: 0;
+    }
+    .myform {
+      width: 200px;
+      margin: 1px;
+    }
+    </style>
+    <script>
+    function moveRight() {
+      var left = document.getElementById("left");
+      var center = document.getElementById("center");
+      if (left.selectedIndex >= 0) {
+        var option = document.createElement("option");
+        option.text = left.options[left.selectedIndex].text;
+        center.add(option);
+  
+        left.remove(left.selectedIndex);
+      }
+      updateSum();
+    }
+
+    function moveLeft() {
+      var left = document.getElementById("left");
+      var center = document.getElementById("center");
+      if (center.selectedIndex >= 0) {
+        var option = document.createElement("option");
+        option.text = center.options[center.selectedIndex].text;
+        left.add(option);
+        center.remove(center.selectedIndex);
+      }
+      updateSum();
+    }
+
+    function updateSum() {
+      var right = document.getElementById("center");
+      var sum = document.getElementById("sum");
+      var n = 0;
+      for (var option of right.options) {
+        n += parseInt(option.text);
+      }
+
+      if (n == 733) {
+        window.alert("You did it!");
+      }
+    }
+    function moved() {
+      var center = document.getElementById("center");
+      var count = document.getElementById("count");
+      var n = 0;
+      for (var option of right.options) {
+        n += parseInt(option.text);
+      }
+      count.innerHTML = "Count of no. moved: " + n.toString();
+
+    }
+    function fin() {
+
+    }
+    function times() {
+      
+    }
+    function minus() {
+
+    }
+    </script>
+  </head>
+
+  <body>
+      <table>
+
+        <tr>
+          <td>
+            <select id="left" size="10" class="myform"></select>
+          </td>
+          <td>
+            <div><button onclick="moveRight()">&#8680;</button></div>
+            <div><button onclick="moveLeft()">&#8678;</button></div>
+
+          </td>
+          <td>
+            <select id="center" size="10" class="myform"></select>
+          </td>
+          <td>
+
+            <div><button onclick="times()">&#215;</button></div>
+            <div><button onclick="minus()">&#8722;</button></div>
+            
+            
+
+            <div><button onclick="moveFarRight()">&#8680;</button></div>
+            <div><button onclick="moveFarLeft()">&#8678;</button></div>
+
+
+          </td>
+          <td>
+            <select id="right" size="10" class="myform"></select>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" id="sum">Collect: 733</td>
+          <td colspan="2" id="count">Count of no. moved: 0</td>
+          <td colspan="2" id="op">Selected Operation: x</td>
+          <td colspan="2" id="answer">Answer: 0</td>
+        </tr>
+      </table>
+  </body>
+
+  <script>
+  var left = document.getElementById("left");
+  for (var i = 0; i < 10; i++) {
+    var option = document.createElement("option");
+    option.text = Math.pow(2, i).toString();
+    left.add(option);
+  }
+  </script>
+</html>

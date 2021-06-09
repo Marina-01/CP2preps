@@ -1,0 +1,156 @@
+body {
+	background-image: url(bg.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+    font-family: "Audiowide", sans-serif;
+    margin: 3%;
+}
+h1 {
+	font-size: 5em;
+	max-width: 50%;
+	color: #FFAE0D;
+	text-align: center;
+	margin: auto;
+	animation: glow 1s ease-in-out infinite alternate;
+	display: inline-block;
+}
+
+@-webkit-keyframes glow {
+	from {
+	    text-shadow: 0 0 10px black, 0 0 20px #FD8D89, 0 0 30px #E60032, 0 0 40px #E60032, 0 0 50px #E60032, 0 0 60px #E60032, 0 0 70px #E60032;
+	}
+	  
+	to {
+		text-shadow: 0 0 20px black, 0 0 25px #2E022B, 0 0 40px #FF3968, 0 0 50px #FF3968, 0 0 60px #FF3968, 0 0 70px #FF3968, 0 0 80px #FF3968;
+	}
+}
+pre {
+	font-family: "Audiowide", sans-serif;
+}
+#header {
+	margin: auto;
+	display: inline-block;
+	text-align: center;
+
+}
+#field {
+	margin: auto;
+	width: 50%;
+	background-color: rgb(244,117,0,0.7);
+	text-align: center;
+}
+#new {
+	font-size: 2em;
+	margin: auto;
+	width: 50%;
+	text-align: center;
+	color: #FFAE0D;
+	animation: new 1s ease-in-out infinite alternate;
+}
+#num {
+	background-color: red;
+}
+@-webkit-keyframes new {
+	from {
+	    text-shadow: 0 0 10px black, 0 0 20px #FD8D89, 0 0 30px #E60032, 0 0 40px #E60032, 0 0 50px #E60032, 0 0 60px #E60032, 0 0 70px #E60032;
+	}
+	  
+	to {
+		text-shadow: 0 0 20px black, 0 0 25px #2E022B, 0 0 40px #FF3968, 0 0 50px #FF3968, 0 0 60px #FF3968, 0 0 70px #FF3968, 0 0 80px #FF3968;
+	}
+}
+.newgame {
+	color: #FFAE0D;
+	background-color: black;
+	border: none;
+	font-family: "Audiowide", sans-serif;
+	font-size: 1em;
+}
+select {
+	color: #FFAE0D;
+	background-color: black;
+	border: none;
+	font-family: "Audiowide", sans-serif;
+	font-size: 1em;
+}
+option {
+	color: #FFAE0D;
+	background-color: black;
+	border: none;
+	font-family: "Audiowide", sans-serif;
+	font-size: 1em;
+}
+option:hover {
+	color:white;
+	background-color: #FFAE0D;
+}
+.bg {
+	max-width: 30px;
+	max-height: 30px;
+}
+.rone {
+	animation: rone 1.2s ease-in-out infinite alternate;
+	animation-delay: 0s;
+}
+
+.rtwo {
+	animation: rtwo 1.2s ease-in-out infinite alternate;
+	animation-delay: 0.3s;
+}
+.rthree {
+	animation: rthree 1.2s ease-in-out infinite alternate;
+	animation-delay: 0.6s;
+}
+.rfour {
+	animation: rfour 1.2s ease-in-out infinite alternate;
+	animation-delay: 1s;
+}
+@-webkit-keyframes rone {
+	from { opacity: 95% }
+	to {opacity: 0%}
+}
+@-webkit-keyframes rtwo {
+	from { opacity: 98% }
+	to {opacity: 0%}
+}
+@-webkit-keyframes rthree {
+	from { opacity: 95% }
+	to {opacity: 0%}
+}
+@-webkit-keyframes rfour{
+	from { opacity: 98% }
+	to {opacity: 0%}
+}
+table {
+	width: 20%;
+	display: inline-block;
+}
+#left {
+	float: left;
+}
+#right {
+	float: right;
+}
+#space {
+	height: 30px;
+}
+#output {
+    position: absolute;
+    opacity: 0;
+}
+#buttons1 {
+    background-color: darkgray;
+    color: white;
+    font-size: large;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+}
+#box {
+    height: 250px;
+    width: 250px;
+    background-color: darkgray;
+    margin: auto;
+    display: block;
+}

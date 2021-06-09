@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Register Account</title>
+<style>
+body {
+	background-color: #F0FECF;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 5%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1D1D1F;
+}
+li {
+    display: inline;
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+}
+li a:hover {
+	background-color: #4F5459;
+}
+#active {
+	background-color: #508A3A;
+}
+#submitbtn {
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+</style>
+</head>
+<body>
+<nav>
+<ul>
+  <li><a href="index.html" target="_blank">Home</a></li>
+  <li><a href="page2.html" id="active" target="_blank">Register Account</a></li>
+  <li><a href="page4.html" target="_blank">Upload Meme</a></li>
+</ul> 
+</nav>
+<br>
+<form action="page3.html" method="post">
+	<fieldset>
+		<legend><h3>Personal Information</h3></legend>
+		<label for="fname">First name:</label>
+		<input type="text" name="fname" id="fname">
+		<br><br>
+		<label for="lname">Last name:</label>
+		<input type="text" name="lname" id="lname">
+		<br><br>
+		<label for="bday">Select your birthday</label>
+		<input type="date" min="1980-01-01" max="2021-01-01" name="bday" id="bday">
+		<br><br>
+		<label for="gender">Gender:</label>
+		<input type="radio" name="gender" id="male">
+		<label for="male">Male</label>
+		<input type="radio" name="gender" id="female">
+		<label for="female">Female</label>
+		<input type="radio" name="gender" id="other">
+		<label for="other">Other</label>
+	</fieldset>
+	<fieldset>
+		<legend><h3>Login Information</h3></legend>
+		<label for="username">Enter your username: </label>
+		<input type="text" name="username" id="username">
+		<br><br>
+		<label for="pass">Enter your password: </label>
+		<input type="password" name="pass" id="pass">
+		<br><br>
+		<label for="pass">Confirm your password: </label>
+		<input type="password" name="pass2" id="pass2">
+		<br><br>
+		<label for="myemail">Enter your e-mail: </label>
+		<input type="email" name="myemail" id="myemail">
+		<br><br>
+		<label for="myemail">Confirm your e-mail: </label>
+		<input type="email" name="myemail2" id="myemail2">
+		<br><br>
+	</fieldset>
+	<fieldset>
+		<legend><h3>Reason for joining this Meme-page</h3></legend>
+		<textarea name="comments" id="comments" rows="10" cols="40" placeholder="Please enter your reasons here."></textarea>
+		<br><br>
+	</fieldset>
+	<br>
+	<fieldset>
+		<br>
+		<input type="submit" name="submitbtn" value="Submit" id="submitbtn">
+		<br>
+	</fieldset>
+</form>
+</body>
+</html>

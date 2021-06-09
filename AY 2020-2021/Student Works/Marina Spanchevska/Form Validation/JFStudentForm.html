@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		label {
+			display: inline-block;
+			width: 150px;
+		}
+		input, select {
+			width: 200px;
+			border: 1px solid black;
+		}
+		fieldset {
+			display: block;
+			float: left;
+			clear: left;
+			margin: 5px;
+		}
+		button {
+			display: block;
+			float: left;
+			clear: left;
+			margin: 8px;
+		}
+		.required {
+			background-color: red;
+		}
+	</style>
+	<script type="text/javascript">
+		function validateEmail() {
+			var get_email = document.getElementById("emailid");
+			var str = get_email.value;
+			var splitstr = str.split("@");
+			if(splitstr[1] == "gmail.com") {
+				window.alert("gmail is not allowed");
+			}
+		}
+		function selectStudy() {
+			var level = document.getElementById("select_level");
+			var program = document.getElementById("select_program");
+			if(level.value == "Undergraduate"){
+				var option = document.createElement("option");
+				option.text = "Mathematics";
+				program.add(option);
+				var option = document.createElement("option");
+				option.text = "CS";
+				program.add(option);
+			}
+			else if(level.value == "Masters"){
+				var option = document.createElement("option");
+				option.text = "Mathematics";
+				program.add(option);
+			}
+			else{
+
+			}
+		}
+	</script>
+</head>
+<body onload="selectStudy()">
+<form>
+	<fieldset>
+		<div>
+			<label for="fname">First Name:</label>
+			<input class="required" type="text" name="fname" required>
+		</div>
+		<div>
+			<label for="lname">Last Name:</label>
+			<input class="required" type="text" name="lname" required>
+		</div>
+		<div>
+			<label for="date">Birth date:</label>
+			<input class="required" type="date" name="date" required>
+		</div>
+		<div>
+			<label for="mobile">Mobile:</label>
+			<input type="text" name="mobile">
+		</div>
+		<div>
+			<label for="email">E-mail:</label>
+			<input type="email" name="email" id="emailid">
+		</div>
+	</fieldset>
+	<fieldset>
+		<div>
+			<label for="level">Study Level:</label>
+			<select name="level" id="select_level">
+				<option value="Undergraduate">Undergraduate</option>
+				<option value="Masters">Masters</option>
+				<option value="Doctoral">Doctoral</option>
+			</select>
+		</div>
+		<div>
+			<label for="program">Study Program:</label>
+			<select name="program" id="select_program"></select>
+		</div>
+	</fieldset>
+	<button type="button">Confirm Data</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercise 3</title>
+	<style type="text/css">
+		body {
+			background-color: #3000dd;
+		}
+		.center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+		#img {
+			height: 160px;
+			width:  240px;
+		}
+		#main {
+			color: white;
+			font-size: 50px;
+			font-weight: 900;
+			 padding: 0;
+			 margin: 0;
+		}
+		#notmain {
+			color: #29c566;
+			font-size: 20px;
+			font-weight: 600;
+		}
+		p {
+			text-align: center;
+			font-family: 'Poppins', sans-serif;
+		}
+		#div1 {
+		display:inline; 
+		width: 70px; 
+		height: 70px; 
+		background-color: green; 
+		border-radius: 50%; 
+		color:white; 
+		text-align: center; 
+		font-size: 50px;
+		margin:auto;
+		padding: 20px;
+		}
+		#div2 {
+		display:inline; 
+		width: 70px; 
+		height: 70px; 
+		background-color: green; 
+		border-radius: 50%; 
+		color:white; 
+		text-align: center; 
+		font-size: 50px;
+		margin:auto;
+		padding: 20px;
+		}
+		#form {
+		background-color: white; 
+		width: 400px; 
+		height:200px; 
+		text-align: center;
+		padding: 20px
+		}
+		#demo {
+		color: white; 
+		font-size: 50px; 
+		text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+			var myVar = setInterval(myTimer, 1000);
+    		var circles=[]
+    		var i=0
+
+			function myTimer() {
+			  var d = new Date();
+			  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+			}
+			 function myFunction() {
+			  alert('Hello')
+			   
+			}
+			function changeDivColorWhite(){
+			 var first=document.getElementById('div1')
+
+			 var second=document.getElementById('div2') 
+			 
+			 circles.push(first)
+			 circles.push(second)
+
+			 circles[i].style.backgroundColor='white'
+			 }
+			function incI(){
+			 i+=1
+			}
+			const interval = setInterval(function() {
+  				 changeDivColorWhite() ; myFunction(); incI();}, 5000);
+
+			clearInterval(interval);
+</script>
+</head>
+<body oncload="setTimeout(myFunction, 3000)">
+
+<img id="img" class="center" src="logo.png">
+
+<p id="main">User Inyerface</p>
+<p id="notmain">a badger frustation</p>
+<p id="demo"></p>
+	
+<div style="margin-left:600px">
+   <div id="div1">1</div>
+    <div id="div2">2</div>
+    <div id="div1">3</div>
+    <div id="div2">4</div>
+    <br><br>
+    <div id="form"><form>
+
+    <input type="text" style="color: gray" value="set password"></input>
+
+    <br><br><br><br>
+
+    <input required type="text" style="color: gray;width:30%" value="your email"></input>
+    <p style="display: inline">@</p>   
+    <input required type="text" style="color: gray;width:20%" value="domain"></input>
+
+    	<select required>
+    		<option>1</option>
+    	    <option>2</option>
+    	    <option>3</option>
+    	</select>
+        
+    </form></div>
+    <br><br>
+    <button type="submit">Next</button>
+</div>
+</body>
+</html>

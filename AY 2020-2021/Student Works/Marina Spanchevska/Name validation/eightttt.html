@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Eight</title>
+	<style type="text/css">
+		#input {
+			background-color: red;
+		}
+		input, select {
+			display: block;
+			float: left;
+			clear: left;
+			margin: 5px;
+		}
+		select {
+			width: 200px;
+		}
+		input {
+			width: 195px;
+		}
+		#add {
+			display: inline-block;
+			float: left;
+			clear: left;
+			margin: 5px;
+			width: 95px;
+		}
+		#clear {
+			display: inline-block;
+			float: left;
+			margin: 5px;
+			width: 95px;
+		}
+	</style>
+	<script type="text/javascript">
+		function check() {
+			var string = document.getElementById("input");
+			var splitName = string.value.split(" ");
+			var name = splitName[0].charAt(0);
+			var surname = splitName[1].charAt(0);
+
+			if(name != name.toUpperCase() || surname != surname.toUpperCase())
+			{
+				window.alert("Please write your name correctly!");
+			}
+			else {
+					return true;
+			}
+			
+		}
+		function print() {
+			if(check(input.value)) {
+				var opt = document.createElement("option");
+				var output = document.getElementById("output");
+
+				opt.text = input.value;
+				output.add(opt);
+			}
+		}
+	</script>
+</head>
+<body>
+<form>
+	<select name="output" id="output">
+	</select>
+	<input type="text" id="input" required onchange="check()">
+	<button type="button" id="add" onclick="print()">Add</button>
+	<button type="clear" id="clear">Clear</button>
+</form>
+</body>
+</html>

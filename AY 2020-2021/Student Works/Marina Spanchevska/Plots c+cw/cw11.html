@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Playing with Plots</title>
+	<style type="text/css">
+		#canvas {
+			border: 1px solid black;
+		}
+	</style>
+	<script type="text/javascript">
+
+		var offx = 0;
+		var offy = 0;
+		var sx = 100;
+		var sy = 200;
+		var temp = 40;
+		var grabx = 0;
+		var	graby = 0;
+		var grabbed = false;
+
+		function initCanvas() {
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
+			context.translate(canvas.width / 2, canvas.height / 2);
+			context.scale(1,-1);
+		}//end initCanvas
+
+		function drawCurve(context, f, color) {
+			context.beginPath();
+			var minx = (-canvas.width / 2 - offx) / sx;
+			var maxx = (canvas.width / 2 - offx) / sx;
+			var x0 = 0, y0sine = 0;
+			for (var x = minx; x <= maxx; x += (maxx - minx)/1000) {
+				var y = f(x);
+				if (x > minx){
+					context.moveTo(x0 * sx + offx, y0 * sy - offy);
+					context.lineTo(x * sx + offx, y * sy - offy);
+				}//end if
+				x0 = x;
+				y0 = y;
+			}//end for
+			context.strokeStyle = color;
+			context.lineWidth = 2;
+			context.stroke();
+		}//end drawCurve
+
+		function drawPlot() {
+
+			var canvas = document.getElementById("canvas");
+    		var context = canvas.getContext("2d");
+    		context.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+
+			//grid lines
+
+		    for ( var i=-1000; i<1000; i+=temp ) {
+
+		            context.moveTo(offx+i, canvas.height);
+		            context.lineTo(offx+i, -canvas.height);
+					context.strokeStyle = "pink";
+		        	context.lineWidth = 1;   
+		    		context.stroke();
+		    }//end for
+
+		    for ( var j=-1000; j<1000; j+=temp) {
+		            context.moveTo(-canvas.width/2, -offy+j);
+		            context.lineTo(canvas.width/2, -offy+j);
+		            context.strokeStyle = "pink";
+				    context.lineWidth = 1;   
+				    context.stroke();
+		    }//end for
+
+			//draw the curve based on the plot's axes
+			context.beginPath();
+
+			//draw it in terms of the plot's width
+			context.moveTo(-canvas.width/2, -offy);
+			context.lineTo(canvas.width/2, -offy);
+			
+			//draw it in terms of the plot's height
+			context.moveTo(offx, -canvas.height/2);
+			context.lineTo(offx, canvas.height/2);
+
+			//define how the curve is drawn
+			context.strokeStyle = "black";
+			context.lineWidth = 2;
+			context.stroke();
+
+			//draw the specific sine wave
+			drawCurve(context, Math.sin, "blue");
+			drawCurve(context, Math.cos, "red");
+
+			//draw axis
+			context.font = "20px Arial";
+			context.fillText("0", offx+10, -10-offy);
+			context.fillText("λ", offx+10, (canvas.height/2)-20);
+			context.fillText("x", (canvas.width/2)-20, -10-offy);
+			
+
+		}//end drawPlot
+
+		function grabPlot(event) {
+			grabx = event.offsetX;
+			graby = event.offsetY;
+			grabbed = true;
+		}//end grabPlot
+
+		function releasePlot(event) {
+			grabbed = false;
+		}//end releasePlot
+
+		function movePlot(event) {
+			if(!grabbed) return;
+			offx += (event.offsetX - grabx);
+			offy += (event.offsetY - graby);
+			grabx = event.offsetX;
+			graby = event.offsetY;
+			drawPlot();
+		}//end movePlot
+
+		function scalePlot(event) {
+			if(event.deltaY < 0) {
+				sx *= 1.1;
+				sy *= 1.1;
+			}
+			else {
+				sx *= 0.9;
+				sy *= 0.9;
+			}
+			drawPlot();
+		}//end scalePlot
+
+	</script>
+</head>
+
+<body>
+	<canvas id="canvas" width="800" height="600"
+	onmousedown="grabPlot(event)" 
+	onmouseup="releasePlot(event)" 
+	onmousemove="movePlot(event)"
+	onwheel="scalePlot(event)"
+	>	
+	</canvas>
+	<script type="text/javascript">
+		initCanvas();
+		drawPlot();
+	</script>
+</body>
+</html>
